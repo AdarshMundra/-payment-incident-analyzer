@@ -1,0 +1,35 @@
+[
+  {"timestamp": "2026-10-24T14:00:00", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5001", "trace_id": "TRACE-M001", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 42, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:00:01", "service": "transaction-switch", "level": "INFO", "transaction_id": "TXN-5001", "trace_id": "TRACE-M001", "event": "ROUTE_TO_AUTH", "status": "SUCCESS", "latency_ms": 10, "message": "Routed to authorization"},
+  {"timestamp": "2026-10-24T14:00:02", "service": "authorization-service", "level": "INFO", "transaction_id": "TXN-5001", "trace_id": "TRACE-M001", "event": "AUTH_APPROVED", "status": "SUCCESS", "response_code": "APPROVED", "latency_ms": 78, "message": "Transaction authorized"},
+
+  {"timestamp": "2026-10-24T14:01:00", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5002", "trace_id": "TRACE-M002", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 40, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:01:01", "service": "authorization-service", "level": "INFO", "transaction_id": "TXN-5002", "trace_id": "TRACE-M002", "event": "INSUFFICIENT_FUNDS", "status": "DECLINED", "response_code": "INSUFFICIENT_FUNDS", "latency_ms": 55, "message": "Declined: insufficient funds"},
+
+  {"timestamp": "2026-10-24T14:02:00", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5003", "trace_id": "TRACE-M003", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 38, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:02:02", "service": "authorization-service", "level": "INFO", "transaction_id": "TXN-5003", "trace_id": "TRACE-M003", "event": "AUTH_APPROVED", "status": "SUCCESS", "response_code": "APPROVED", "latency_ms": 90, "message": "Transaction authorized"},
+
+  {"timestamp": "2026-10-24T14:03:00", "service": "payment-database", "level": "WARN", "event": "CONNECTION_POOL_HIGH", "status": "WARNING", "message": "Connection pool usage at 90%"},
+
+  {"timestamp": "2026-10-24T14:03:30", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5004", "trace_id": "TRACE-M004", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 44, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:03:31", "service": "authorization-service", "level": "INFO", "transaction_id": "TXN-5004", "trace_id": "TRACE-M004", "event": "CARD_EXPIRED", "status": "DECLINED", "response_code": "CARD_EXPIRED", "latency_ms": 60, "message": "Declined: card expired"},
+
+  {"timestamp": "2026-10-24T14:04:00", "service": "payment-database", "level": "ERROR", "event": "CONNECTION_POOL_EXHAUSTED", "status": "FAILED", "message": "Connection pool exhausted - no available connections"},
+  {"timestamp": "2026-10-24T14:04:05", "service": "core-banking", "level": "ERROR", "event": "DATABASE_TIMEOUT", "status": "FAILED", "response_code": "DATABASE_TIMEOUT", "latency_ms": 3000, "message": "Database query timed out"},
+  {"timestamp": "2026-10-24T14:04:10", "service": "account-service", "level": "ERROR", "transaction_id": "TXN-5005", "trace_id": "TRACE-M005", "event": "SERVICE_TIMEOUT", "status": "FAILED", "response_code": "SERVICE_TIMEOUT", "latency_ms": 5000, "message": "Core banking timed out"},
+  {"timestamp": "2026-10-24T14:04:12", "service": "authorization-service", "level": "ERROR", "transaction_id": "TXN-5005", "trace_id": "TRACE-M005", "event": "DEPENDENCY_FAILURE", "status": "FAILED", "response_code": "DEPENDENCY_FAILURE", "latency_ms": 5100, "message": "Account service unavailable"},
+  {"timestamp": "2026-10-24T14:04:13", "service": "transaction-switch", "level": "ERROR", "transaction_id": "TXN-5005", "trace_id": "TRACE-M005", "event": "AUTH_FAILED", "status": "FAILED", "response_code": "SERVICE_UNAVAILABLE", "latency_ms": 5200, "message": "Authorization failed"},
+
+  {"timestamp": "2026-10-24T14:05:00", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5006", "trace_id": "TRACE-M006", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 41, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:05:02", "service": "authorization-service", "level": "ERROR", "transaction_id": "TXN-5006", "trace_id": "TRACE-M006", "event": "DEPENDENCY_FAILURE", "status": "FAILED", "response_code": "DEPENDENCY_FAILURE", "latency_ms": 5050, "message": "Account service unavailable"},
+
+  {"timestamp": "2026-10-24T14:05:30", "service": "payment-gateway", "level": "INFO", "transaction_id": "TXN-5007", "trace_id": "TRACE-M007", "event": "TRANSACTION_RECEIVED", "status": "SUCCESS", "latency_ms": 39, "message": "Card transaction received"},
+  {"timestamp": "2026-10-24T14:05:32", "service": "authorization-service", "level": "INFO", "transaction_id": "TXN-5007", "trace_id": "TRACE-M007", "event": "INVALID_PIN", "status": "DECLINED", "response_code": "INVALID_PIN", "latency_ms": 65, "message": "Declined: invalid PIN"},
+
+  {"timestamp": "2026-10-24T14:06:00", "service": "core-banking", "level": "ERROR", "event": "DATABASE_TIMEOUT", "status": "FAILED", "response_code": "DATABASE_TIMEOUT", "latency_ms": 3000, "message": "Database still unreachable"},
+  {"timestamp": "2026-10-24T14:06:10", "service": "account-service", "level": "ERROR", "transaction_id": "TXN-5008", "trace_id": "TRACE-M008", "event": "SERVICE_TIMEOUT", "status": "FAILED", "response_code": "SERVICE_TIMEOUT", "latency_ms": 5000, "message": "Core banking timed out"},
+  {"timestamp": "2026-10-24T14:06:12", "service": "authorization-service", "level": "ERROR", "transaction_id": "TXN-5008", "trace_id": "TRACE-M008", "event": "DEPENDENCY_FAILURE", "status": "FAILED", "response_code": "DEPENDENCY_FAILURE", "latency_ms": 5100, "message": "Account service unavailable"},
+
+  {"timestamp": "2026-10-24T14:07:00", "service": "risk-service", "level": "INFO", "event": "HEALTH_CHECK", "status": "SUCCESS", "message": "Risk service healthy"},
+  {"timestamp": "2026-10-24T14:07:00", "service": "payment-gateway", "level": "INFO", "event": "HEALTH_CHECK", "status": "SUCCESS", "message": "Gateway healthy"}
+]

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Incident Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-icon">&#x26A1;</div>
+    <div>
+        <h1>Payment Incident Intelligence</h1>
+        <div class="subtitle">AI-assisted investigation for distributed payment incidents</div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Input Section -->
+    <div class="input-section">
+        <h2>Load a sample scenario or paste your own logs</h2>
+        <div class="sample-buttons">
+            <button class="btn" onclick="loadSample('database_failure')">Database Failure</button>
+            <button class="btn" onclick="loadSample('auth_failure')">Auth Service Failure</button>
+            <button class="btn" onclick="loadSample('normal_declines')">Normal Declines</button>
+        </div>
+        <textarea id="logInput" placeholder="Paste JSON logs here, or use a sample scenario above..."></textarea>
+        <div class="input-actions">
+            <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeIncident()">Analyze Incident</button>
+            <label class="file-upload-label">
+                Upload log file
+                <input type="file" id="fileInput" accept=".json,.log,.txt" onchange="handleFileUpload(event)">
+            </label>
+            <span id="fileName" style="font-size:0.8rem; color:var(--text-muted);"></span>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading" style="display:none;">
+        <div class="spinner"></div>
+        <div>Analyzing incident...</div>
+    </div>
+
+    <!-- Results -->
+    <div id="results">
+
+        <!-- Incident Header -->
+        <div class="incident-header" id="incidentHeader"></div>
+
+        <!-- Metrics -->
+        <div class="metrics-grid" id="metricsGrid"></div>
+
+        <!-- Services + Failure Chain side by side -->
+        <div class="two-col">
+            <div class="card" id="servicesCard">
+                <h3>Affected Services</h3>
+                <div id="servicesContent"></div>
+            </div>
+            <div class="card" id="chainCard">
+                <h3>Failure Chain</h3>
+                <div id="chainContent"></div>
+            </div>
+        </div>
+
+        <!-- AI Analysis -->
+        <div class="ai-section" id="aiSection"></div>
+
+        <!-- Summary -->
+        <div class="summary-section" id="summarySection"></div>
+
+        <!-- Timeline -->
+        <div class="timeline-section" id="timelineSection"></div>
+
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
